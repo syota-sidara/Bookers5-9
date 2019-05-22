@@ -1,0 +1,41 @@
+<% if @book.errors.any? %>
+
+<h2><%= @book.errors.count %>error prohibited this obj from being saved:</h2>
+<% @book.errors.full_messages.each do |message| %>
+ <%= message %>
+<% end %>
+<% end %>
+
+
+<div class='container'>
+	<div class='row'>
+		<%= render "users/list", book: @book, user: @user %>
+
+		<div class="col-xs-9">
+			<h2>Books</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Title</th>
+						<th>Opinion</th>
+					</tr>
+				</thead>
+				<% @books.each do |book| %>
+				<tbody>
+					<tr>
+						<td>
+							<%= link_to user_path(book.user_id), class: "user_#{book.user_id}" do %>
+								<%= attachment_image_tag book.user, :profile_image, format: 'jepg', fallback: "no_image.jpg", size: "40x40"  %>
+							<%= book.user.name %>
+							<% end %>
+						</td>
+						<td><%= link_to book.title,book_path(book.id), class: "book_#{book.id}" %></td>
+						<td><%= book.body %></td>
+					</tr>
+				</tbody>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>

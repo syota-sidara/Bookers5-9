@@ -1,0 +1,32 @@
+<div class='container'>
+	<div class="body">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h2>User info</h2>
+				<% if @user.errors.any? %>
+				 <h2><%= @user.errors.count %>error prohibited this obj from being saved:</h2>
+				<% @user.errors.full_messages.each do |message| %>
+				 <%= message %>
+				<% end %>
+				<% end %>
+			    <%= form_for(@user) do |f| %>
+			    <label>Name</label><br>
+			    <%= f.text_field :name, class: "name width" %><br>
+			    <label>Image</label><br>
+			    <label><%= f.attachment_field :profile_image, class: "use_image" %></label><br>
+			    <label>Introduction</label>
+				<%= f.text_area :introduction, class: 'form-control' %><br>
+				<%= f.submit "Update User", class:"btn btn-primary width" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+ 
+
+  
+
+
+
+
